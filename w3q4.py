@@ -1,25 +1,11 @@
-import math
+def order_of_r(r, n):
+    if r % n == 0:
+        return -1
+    for i in range(1, n):
+        if pow(r, i, n) == 1:
+            return i
+    return -1
 
-def gcd(a, b):
-    while b:
-        a, b = b, a % b
-    return a
-
-def order_of_r_mod_n(r, n):
-    if gcd(r, n) != 1:
-        return "NOT defined"
-    
-    power = 1
-    k = 1
-    while power != 1:
-        power = (power * r) % n
-        k += 1
-        if k > n:  
-            return "NOT defined"
-    
-    return k
-
-r, n = map(int, input("Enter value of r and n: ").split())
-
-result = order_of_r_mod_n(r, n)
-print(f"Order of {r} % ({n}) is {result}")
+r = int(input("Enter the value of r: "))
+n = int(input("Enter the value of n: "))
+print("Order of", r, "under modulo", n, "is:", order_of_r(r, n))
